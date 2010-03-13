@@ -62,4 +62,9 @@ main = do osrelease <- sysctlReadString "kern.osrelease"
           procs <- sysctlPeekArray "kern.proc.all" :: IO [Proc]
           putStrLn "PID\tUID\tCOMMAND"
           mapM_ print procs
-          sysctlWriteInt "vfs.usermount" 0 -- Will explode if not root
+
+          oid  <- sysctlNameToOidArgs "kern.proc.pid" [1]
+          init <- sysctlPeek oid :: IO Proc
+          putStrLn "Init process:"
+          print init
+          --sysctlWriteInt "vfs.usermount" 0 -- Will explode if not root
