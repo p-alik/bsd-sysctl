@@ -5,6 +5,7 @@ License:	BSD3
 Author:		Maxime Henrion
 Copyright:	2009, Maxime Henrion
 Maintainer:	Maxime Henrion <mhenrion@gmail.com>
+Bug-Reports:	http://bitbucket.org/mumux/bsd-sysctl/issues/
 Category:	System, BSD
 Synopsis:	Access to the BSD sysctl(3) interface
 Description:
@@ -14,10 +15,14 @@ Description:
   It allows to read and write both basic sysctl types, as well as complex opaque
   types (typically C structures) described via Storable instances.
 Build-Type:	Custom
-Cabal-Version:	>= 1.2
+Cabal-Version:	>= 1.6
 Tested-with:	GHC ==6.10, GHC ==6.12
 Extra-Source-Files:
   demo/Demo.hsc demo/demo.cabal demo/demo.output demo/Setup.hs
+
+Source-Repository head
+  Type:			mercurial
+  Location:		http://bitbucket.org/mumux/bsd-sysctl/
 
 Library
   Build-Depends:	base >= 3 && < 5
