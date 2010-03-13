@@ -20,6 +20,11 @@
 -- 'Storable' instance.  It is also possible to retrieve data whose size changes
 -- at runtime with the 'sysctlPeekArray' function.
 --
+-- On some platforms, there are sysctl nodes that accept parameters via
+-- additional components in the OID (see for instance the "kern.proc.pid" sysctl
+-- described in sysctl(3) on FreeBSD).  The 'sysctlNameToOidArgs' makes it easy
+-- to query such nodes as well.
+--
 -- Nodes may be queried either by their OID as a list of integers, by their
 -- binary OID for maximum speed, or by their names on platforms that support it. 
 -------------------------------------------------------------------------------
@@ -37,10 +42,8 @@ module System.BSD.Sysctl (
   OID,
 
   -- * OID creation and extraction
-#ifdef HAVE_SYSCTLNAMETOMIB
   sysctlNameToOid,	-- :: String -> IO OID
   sysctlNameToOidArgs,	-- :: String -> [#{type int}] -> IO OID
-#endif
   sysctlPrepareOid,	-- :: [#{type int}] -> IO OID
   sysctlExtractOid,	-- :: OID -> IO [#{type int}]
 
@@ -112,15 +115,21 @@ sysctlPrepareOid oid =
 -- on (at least) Linux and OpenBSD.
 foreign import ccall unsafe "sysctlnametomib"
   c_sysctlnametomib :: CString -> Ptr CInt -> Ptr CSize -> IO CInt
+#endif
 
 -- | Get the 'OID' corresponding to a sysctl name.
 sysctlNameToOid :: String -> IO OID
+#ifdef HAVE_SYSCTLNAMETOMIB
 sysctlNameToOid name = sysctlNameToOidArgs name []
+#else
+sysctlNameToOid name = error "not available on this platform"
+#endif
 
 -- | Like 'sysctlNameToOid', but allows to provide a list of
 -- additional integers to append to the OID, for specific sysctl
 -- nodes that support parameters this way.
 sysctlNameToOidArgs :: String -> [#{type int}] -> IO OID
+#ifdef HAVE_SYSCTLNAMETOMIB
 sysctlNameToOidArgs name args =
   withCString name $ \cname -> do
     allocaArray (fromIntegral maxlen) $ \oid -> do
@@ -138,7 +147,11 @@ sysctlNameToOidArgs name args =
         return (OID fp (fromIntegral len))
   where maxlen = #{const CTL_MAXNAME}
         alen   = length args
+#else
+sysctlNameToOidArgs name args = error "not available on this platform"
+#endif
 
+#ifdef HAVE_SYSCTLNAMETOMIB
 instance SysctlKey String where
   withKey name f = sysctlNameToOid name >>= flip withKey f
 #endif

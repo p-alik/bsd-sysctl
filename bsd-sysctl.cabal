@@ -1,5 +1,5 @@
 Name:		bsd-sysctl
-Version:	1.0.1
+Version:	1.0.2
 License-File:	LICENSE
 License:	BSD3
 Author:		Maxime Henrion
@@ -8,11 +8,11 @@ Maintainer:	Maxime Henrion <mhenrion@gmail.com>
 Category:	System, BSD
 Synopsis:	Access to the BSD sysctl(3) interface
 Description:
-  This module provides efficient access to the BSD sysctl(3)
-  interface via the Haskell FFI.
+  This module provides efficient access to the BSD sysctl(3) interface via the
+  Haskell FFI.
   .
-  It allows to read and write both basic sysctl types, as well as complex
-  opaque types (typically C structures) described via Storable instances.
+  It allows to read and write both basic sysctl types, as well as complex opaque
+  types (typically C structures) described via Storable instances.
 Build-Type:	Simple
 Cabal-Version:	>= 1.2
 Tested-with:	GHC ==6.10
