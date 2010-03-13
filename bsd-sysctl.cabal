@@ -3,7 +3,7 @@ Version:	1.0.6
 License-File:	LICENSE
 License:	BSD3
 Author:		Maxime Henrion
-Copyright:	2009, Maxime Henrion
+Copyright:	2009-2010, Maxime Henrion
 Maintainer:	Maxime Henrion <mhenrion@gmail.com>
 Bug-Reports:	http://bitbucket.org/mumux/bsd-sysctl/issues/
 Category:	System, BSD
