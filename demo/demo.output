@@ -1,0 +1,14 @@
+kern.osrelease: 7.2-PRERELEASE
+kern.boottime: { usec = 1241115805, usec = 736670 }
+kern.maxfiles: 32768
+kern.lastpid: 90199
+vfs.numvnodes: 45973
+net.inet.tcp.recvspace: 65536
+PID	UID	COMMAND
+90199	1001	demo
+89970	1001	vim
+89593	1001	zsh
+87861	1001	screen
+87841	1001	ssh
+[...lots of lines removed...]
+test: sysctl: permission denied (Operation not permitted)
