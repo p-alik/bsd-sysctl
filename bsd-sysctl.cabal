@@ -1,5 +1,5 @@
 Name:		bsd-sysctl
-Version:	1.0.4
+Version:	1.0.5
 License-File:	LICENSE
 License:	BSD3
 Author:		Maxime Henrion
@@ -15,11 +15,11 @@ Description:
   types (typically C structures) described via Storable instances.
 Build-Type:	Custom
 Cabal-Version:	>= 1.2
-Tested-with:	GHC ==6.10
-Data-Files:	demo/Demo.hsc demo/demo.cabal demo/demo.output demo/Setup.hs
+Tested-with:	GHC ==6.10, GHC ==6.12
+Data-Files:	demo/Demo.hsc demo/demo.cabal demo/demo.output
 
 Library
-  Build-Depends:	base
+  Build-Depends:	base >= 3 && < 5
   Exposed-Modules:	System.BSD.Sysctl
   Extensions:		ForeignFunctionInterface, ScopedTypeVariables,
                         TypeSynonymInstances, FlexibleInstances
