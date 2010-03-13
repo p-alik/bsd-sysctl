@@ -22,8 +22,8 @@
 --
 -- On some platforms, there are sysctl nodes that accept parameters via
 -- additional components in the OID (see for instance the \"kern.proc.pid\"
--- sysctl described in sysctl(3) on FreeBSD).  The 'sysctlNameToOidArgs' makes
--- it easy to query such nodes as well.
+-- sysctl described in sysctl(3) on FreeBSD).  The 'sysctlNameToOidArgs'
+-- function makes it easy to query such nodes as well.
 --
 -- Nodes may be queried either by their OID as a list of integers, by their
 -- binary OID for maximum speed, or by their names on platforms that support it.

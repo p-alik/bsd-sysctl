@@ -1,5 +1,5 @@
 Name:		bsd-sysctl
-Version:	1.0.3
+Version:	1.0.4
 License-File:	LICENSE
 License:	BSD3
 Author:		Maxime Henrion
@@ -13,7 +13,7 @@ Description:
   .
   It allows to read and write both basic sysctl types, as well as complex opaque
   types (typically C structures) described via Storable instances.
-Build-Type:	Simple
+Build-Type:	Custom
 Cabal-Version:	>= 1.2
 Tested-with:	GHC ==6.10
 Data-Files:	demo/Demo.hsc demo/demo.cabal demo/demo.output demo/Setup.hs

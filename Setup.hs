@@ -16,6 +16,7 @@ main = defaultMainWithHooks simpleUserHooks {
 -- Horrible hack to force re-processing of the .hsc file.  Otherwise
 -- the __HADDOCK__ macro doesn't end up being defined.
 removePreProcessedFiles :: FilePath -> IO ()
-removePreProcessedFiles dir =
+removePreProcessedFiles dir = do
+  putStrLn $ "Trying to remove source in: " ++ dir
   removeFile (dir </> "System/BSD/Sysctl.hs")
-    `catch` \_ -> return ()
+    `catch` \_ -> putStrLn "Could not find source file!" >> return ()
