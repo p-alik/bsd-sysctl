@@ -5,7 +5,7 @@ License:	BSD3
 Author:		Maxime Henrion
 Copyright:	2009-2010, Maxime Henrion
 Maintainer:	Maxime Henrion <mhenrion@gmail.com>
-Bug-Reports:	http://bitbucket.org/mumux/bsd-sysctl/issues/
+Bug-Reports:	http://bitbucket.org/mux/bsd-sysctl/issues/
 Category:	System, BSD
 Synopsis:	Access to the BSD sysctl(3) interface
 Description:
@@ -22,7 +22,7 @@ Extra-Source-Files:
 
 Source-Repository head
   Type:			mercurial
-  Location:		http://bitbucket.org/mumux/bsd-sysctl/
+  Location:		http://bitbucket.org/mux/bsd-sysctl/
 
 Library
   Build-Depends:	base >= 3 && < 5
