@@ -1,3 +1,4 @@
+import Control.Exception
 import Distribution.Simple
 import Distribution.Simple.LocalBuildInfo (LocalBuildInfo(withPrograms), buildDir)
 import Distribution.Simple.Program (userSpecifyArgs)
@@ -19,4 +20,4 @@ removePreProcessedFiles :: FilePath -> IO ()
 removePreProcessedFiles dir = do
   putStrLn $ "Trying to remove source in: " ++ dir
   removeFile (dir </> "System/BSD/Sysctl.hs")
-    `catch` \_ -> putStrLn "Could not find source file!" >> return ()
+    `catch` ((\_ -> putStrLn "Could not find source file!") :: IOException -> IO ()) >> return ()
