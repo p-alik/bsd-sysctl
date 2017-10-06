@@ -6,7 +6,7 @@
 -----------------------------------------------------------------------------
 -- |
 -- Module      :  System.BSD.Sysctl
--- Copyright   :  (c) Maxime Henrion 2009
+-- Copyright   :  (c) Maxime Henrion 2009-2010
 -- License     :  see LICENSE
 --
 -- Maintainer  :  mhenrion@gmail.com
@@ -43,36 +43,36 @@ module System.BSD.Sysctl (
 
   -- * OID creation and extraction
 #ifdef HAVE_SYSCTLNAMETOMIB
-  sysctlNameToOid,	-- :: String -> IO OID
-  sysctlNameToOidArgs,	-- :: String -> [#{type int}] -> IO OID
+  sysctlNameToOid,  -- :: String -> IO OID
+  sysctlNameToOidArgs,  -- :: String -> [#{type int}] -> IO OID
 #endif
-  sysctlPrepareOid,	-- :: [#{type int}] -> IO OID
-  sysctlExtractOid,	-- :: OID -> IO [#{type int}]
+  sysctlPrepareOid, -- :: [#{type int}] -> IO OID
+  sysctlExtractOid, -- :: OID -> IO [#{type int}]
 
   -- * Basic reading functions
-  sysctlReadInt,	-- :: SysctlKey k => k -> IO #{type int}
-  sysctlReadUInt,	-- :: SysctlKey k => k -> IO #{type unsigned int}
-  sysctlReadLong,	-- :: SysctlKey k => k -> IO #{type long}
-  sysctlReadULong,	-- :: SysctlKey k => k -> IO #{type unsigned long}
-  sysctlReadQuad,	-- :: SysctlKey k => k -> IO Int64
-  sysctlReadUQuad,	-- :: SysctlKey k => k -> IO Word64
-  sysctlReadString,	-- :: SysctlKey k => k -> IO String
+  sysctlReadInt,  -- :: SysctlKey k => k -> IO #{type int}
+  sysctlReadUInt, -- :: SysctlKey k => k -> IO #{type unsigned int}
+  sysctlReadLong, -- :: SysctlKey k => k -> IO #{type long}
+  sysctlReadULong,  -- :: SysctlKey k => k -> IO #{type unsigned long}
+  sysctlReadQuad, -- :: SysctlKey k => k -> IO Int64
+  sysctlReadUQuad,  -- :: SysctlKey k => k -> IO Word64
+  sysctlReadString, -- :: SysctlKey k => k -> IO String
 
   -- * Advanced reading functions
-  sysctlPeek,		-- :: forall k a. (SysctlKey k, Storable a) => k -> IO a
-  sysctlPeekArray,	-- :: forall k a. (SysctlKey k, Storable a) => k -> IO [a]
+  sysctlPeek,   -- :: forall k a. (SysctlKey k, Storable a) => k -> IO a
+  sysctlPeekArray,  -- :: forall k a. (SysctlKey k, Storable a) => k -> IO [a]
 
   -- * Basic writing functions
-  sysctlWriteInt,	-- :: SysctlKey k => k -> #{type int} -> IO ()
-  sysctlWriteUInt,	-- :: SysctlKey k => k -> #{type unsigned int} -> IO ()
-  sysctlWriteLong,	-- :: SysctlKey k => k -> #{type long} -> IO ()
-  sysctlWriteULong,	-- :: SysctlKey k => k -> #{type unsigned long} -> IO ()
-  sysctlWriteQuad,	-- :: SysctlKey k => k -> Int64 -> IO ()
-  sysctlWriteUQuad,	-- :: SysctlKey k => k -> Word64 -> IO ()
-  sysctlWriteString,	-- :: SysctlKey k => k -> String -> IO ()
+  sysctlWriteInt, -- :: SysctlKey k => k -> #{type int} -> IO ()
+  sysctlWriteUInt,  -- :: SysctlKey k => k -> #{type unsigned int} -> IO ()
+  sysctlWriteLong,  -- :: SysctlKey k => k -> #{type long} -> IO ()
+  sysctlWriteULong, -- :: SysctlKey k => k -> #{type unsigned long} -> IO ()
+  sysctlWriteQuad,  -- :: SysctlKey k => k -> Int64 -> IO ()
+  sysctlWriteUQuad, -- :: SysctlKey k => k -> Word64 -> IO ()
+  sysctlWriteString,  -- :: SysctlKey k => k -> String -> IO ()
 
   -- * Advanced writing functions
-  sysctlPoke		-- :: (SysctlKey k, Storable a) => k -> a -> IO ()
+  sysctlPoke    -- :: (SysctlKey k, Storable a) => k -> a -> IO ()
   ) where
 
 import Control.Arrow (second)
@@ -226,7 +226,7 @@ sysctlReadDynamic :: SysctlKey k => k -> (CSize -> CSize) -> (Ptr a -> CSize -> 
 sysctlReadDynamic key scale f =
   withKey key $ \oid len -> do
     size <- sysctlGetSize oid len
-    let bufSize = scale size	-- Allows to make room for lists of variable length
+    let bufSize = scale size  -- Allows to make room for lists of variable length
     allocaBytes (fromIntegral bufSize) $ \buf ->
       sysctlRead oid len buf bufSize f
 
