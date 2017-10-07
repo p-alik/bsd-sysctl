@@ -1,6 +1,7 @@
-Name: demo
-Version: 0.0
-Build-Depends: base >= 3 && < 5, bsd-sysctl
-Build-Type: Simple
-Executable: demo
-Main-is: Demo.hs
+name:                demo
+version:             0.0
+Build-Depends:       base >= 3 && < 5,
+                     bsd-sysctl
+build-type:          Simple
+executable:          demo
+main-is:             Demo.hs
