@@ -15,7 +15,7 @@ description:
   .
   It allows to read and write both basic sysctl types, as well as complex opaque
   types (typically C structures) described via Storable instances.
-build-type:          Custom
+build-type:          Simple
 cabal-version:       >=1.10
 tested-with:         GHC ==6.10
                    , GHC ==6.12
