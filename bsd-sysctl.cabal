@@ -19,6 +19,9 @@ build-type:          Simple
 cabal-version:       >=1.10
 tested-with:         GHC ==6.10
                    , GHC ==6.12
+                   , GHC ==7.8.4
+                   , GHC ==7.10.3
+                   , GHC ==8.0.2
 extra-source-files:
   demo/Demo.hsc demo/demo.cabal demo/demo.output demo/Setup.hs
 
