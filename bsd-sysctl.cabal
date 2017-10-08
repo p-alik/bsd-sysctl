@@ -23,6 +23,8 @@ tested-with:         GHC ==6.10
                    , GHC ==7.10.3
                    , GHC ==8.0.2
 extra-source-files:
+  README.md
+  changelog
   demo/Demo.hsc
   demo/Setup.hs
   demo/demo.cabal
