@@ -9,4 +9,4 @@ types (typically C structures) described via Storable instances.
 
 See [`bsd-sysctl` on Hackage](https://hackage.haskell.org/package/bsd-sysctl) for more information.
 
-[Demo.hs](demo/Demo.hsc) contains a sample implementation.
+[Demo.hsc](demo/Demo.hsc) contains a sample implementation.
