@@ -1,10 +1,11 @@
-import Control.Exception
-import Distribution.Simple
-import Distribution.Simple.LocalBuildInfo (LocalBuildInfo(withPrograms), buildDir)
-import Distribution.Simple.Program (userSpecifyArgs)
+import           Control.Exception
+import           Distribution.Simple
+import           Distribution.Simple.LocalBuildInfo (LocalBuildInfo (withPrograms),
+                                                     buildDir)
+import           Distribution.Simple.Program        (userSpecifyArgs)
 
-import System.Directory
-import System.FilePath
+import           System.Directory
+import           System.FilePath
 
 -- Define __HADDOCK__ when building documentation.
 main = defaultMainWithHooks simpleUserHooks {
