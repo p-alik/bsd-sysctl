@@ -1,0 +1,3 @@
+Changes in version 1.0.8.0
+
+  * fix exception catching in Setup.hs
