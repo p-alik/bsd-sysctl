@@ -1,5 +1,5 @@
 name:                bsd-sysctl
-version:             1.0.7
+version:             1.0.8.0
 license-File:        LICENSE
 license:             BSD3
 author:              Maxime Henrion
