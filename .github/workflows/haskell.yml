@@ -1,0 +1,31 @@
+name: Haskell CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build and Test
+    steps:
+    - uses: actions/checkout@v4
+    - name: Prepare FreeBSD VM
+      id: test
+      uses: vmactions/freebsd-vm@v1
+      with:
+        usesh: true
+        prepare: |
+          pkg install -y curl gcc gmp gmake ncurses perl5 libffi libiconv
+          curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | BOOTSTRAP_HASKELL_NONINTERACTIVE=1 BOOTSTRAP_HASKELL_ADJUST_BASHRC=1 sh
+        run: |
+          . ~/.ghcup/env
+          cabal update
+          cabal build --only-dependencies --enable-tests --enable-benchmarks
+          cabal build --enable-tests --enable-benchmarks all
+          cabal test all
